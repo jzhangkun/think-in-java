@@ -67,7 +67,18 @@ public class ReferenceCountingValidation {
         new Composing(shared);
         // force garbage collection & finalization
         // not work any more?
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.gc();
+        System.runFinalization();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
