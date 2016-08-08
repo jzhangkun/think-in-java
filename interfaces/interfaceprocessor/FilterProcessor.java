@@ -18,7 +18,7 @@ class FilterAdaptor implements Processor {
         return filter.process((Waveform)input);
     }
 }
-public class FilterProcessor {
+public class FilterProcessor {;
     public static void main(String[] args) {
         Waveform w = new Waveform();
         Apply.process(new FilterAdaptor(new LowPass(1.0)), w);
