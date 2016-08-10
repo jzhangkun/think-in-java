@@ -1,5 +1,10 @@
 package polymorphism.ex13;
 
+import java.lang.ref.PhantomReference;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jzhangkun
@@ -7,6 +12,7 @@ package polymorphism.ex13;
  * Time: 8:00 AM
  * To change this template use File | Settings | File Templates.
  */
+
 
 class Shared {
     private int refcount = 0;
@@ -64,10 +70,28 @@ public class ReferenceCountingValidation {
         for(Composing c: composing)
             c.dispose();
 
-        new Composing(shared);
+        Composing reference = new Composing(shared);
+        WeakReference<Composing> weakRef = new WeakReference<Composing>(reference);
+        reference = null;
+        //Object myObject = new Object();
+        //WeakReference<Object> weakreference = new WeakReference<Object>(myObject);
+        //myObject = null;
+        System.out.println("before gc = " + weakRef);
         // force garbage collection & finalization
         // not work any more?
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.gc();
+        System.runFinalization();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("after gc = " + weakRef);
     }
 }
 
