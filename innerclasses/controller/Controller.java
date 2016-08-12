@@ -10,9 +10,11 @@ public class Controller {
     public void addEvent(Event c) { eventList.add(c); }
     public void run() {
         while(eventList.size() > 0) {
+            // get a new copy for events
             for(Event e: new ArrayList<Event>(eventList)) {
                 if (e.ready()) {
                     System.out.println(e);
+                    //System.out.println(System.nanoTime() + " cmp " + e.getEventTime());
                     e.action();
                     eventList.remove(e);
                 }

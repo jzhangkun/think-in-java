@@ -11,10 +11,17 @@ public abstract class Event {
         start();
     }
     public void start() {
-        eventTime = System.nanoTime();
+        //eventTime = System.nanoTime() + delayTime;
+        eventTime = System.currentTimeMillis() + delayTime;
     }
     public boolean ready() {
-        return System.nanoTime() >= eventTime;
+        //return System.nanoTime() >= eventTime;
+        // nanotime is too soon to catch up on
+        return System.currentTimeMillis() >= eventTime;
+
+    }
+    public long getEventTime() {
+        return eventTime;
     }
     public abstract void action();
 }
