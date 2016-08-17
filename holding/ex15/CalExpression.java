@@ -18,17 +18,23 @@ public class CalExpression {
         expression = exp;
     }
     public static void main(String[] args) {
-        Stack<String> stack = new Stack<String>();
+        Stack<Character> stack = new Stack<Character>();
         String exp = "+U+n+c---+e+r+t---+a-+i-+n+t+y---+-+r+u--+l+e+s---";
         //List<String> chars = new ArrayList<String>(exp.toCharArray());
-        for(char e: exp.toCharArray()) {
-            if(e == '+'){
-                stack.push();
+        char[] ch = exp.toCharArray();
+        System.out.println(ch);
+        for(int i  = 0; i < ch.length; i++) {
+            if (ch[i] == '+') {
+                i++;
+                stack.push(ch[i]);
+                System.out.println("push " + ch[i]);
             }
+            else if(ch[i] == '-') {
+                char c = stack.pop();
+                System.out.println("pop " + c);
 
+            }
         }
-            System.out.println(e);
-
     }
 
 
