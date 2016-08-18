@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Gerbil {
     private int GerbilNumber;
-    Gerbil(int n) {
+    public Gerbil(int n) {
         GerbilNumber = n;
     }
     public String toString() {
