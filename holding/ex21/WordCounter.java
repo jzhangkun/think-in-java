@@ -19,6 +19,8 @@ public class WordCounter {
         Set<String> wordset = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
         wordset.addAll(wordCounter.keySet());
 
+        //Collections.sort(new ArrayList<String>((Collection)wordCounter.keySet()));
+
         for(String w: wordset)
             System.out.println(w + " : " + wordCounter.get(w));
 
