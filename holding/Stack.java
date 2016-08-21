@@ -1,5 +1,6 @@
 package holding;
 
+import java.util.Collection;
 import java.util.LinkedList;
 /**
  * Created with IntelliJ IDEA.
@@ -15,4 +16,5 @@ public class Stack<T> {
     public T pop() { return storage.removeFirst(); }
     public boolean empty() { return storage.isEmpty(); }
     public String toString() { return storage.toString(); }
+
 }
