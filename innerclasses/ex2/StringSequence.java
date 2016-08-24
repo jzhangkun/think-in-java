@@ -1,7 +1,7 @@
 package innerclasses.ex2;
 import innerclasses.Selector;
 import innerclasses.Sequence;
-
+import innerclasses.Sequence.*;
 /**
  * Created by jack.zhang on 8/9/2016.
  */
@@ -15,8 +15,13 @@ public class StringSequence {
     }
     public static void main(String[] args) {
         Sequence sequence = new Sequence(5);
-        for (int i = 0; i < 5; i++)
-            sequence.add(new StringSequence(Integer.toString(i)));
+        for (int i = 0; i < 5; i++) {
+            try {
+                sequence.add(new StringSequence(Integer.toString(i)));
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
         Selector selector = sequence.selector();
         while(!selector.end()) {
             System.out.print(selector.current().toString());
