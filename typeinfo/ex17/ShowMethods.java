@@ -1,12 +1,14 @@
-package typeinfo;
-import java.lang.reflect.*;
-import java.util.regex.*;
+package typeinfo.ex17;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.regex.Pattern;
 
 /**
  * Created by jzhangkun on 22/10/2016.
  */
 public class ShowMethods {
-    public static Pattern p = Pattern.compile("\\w+\\.");
+    public static Pattern p = Pattern.compile("\\w+\\.|final\\s*|native\\s*");
     public static void main(String[] args ) {
         if (args.length < 1) {
             System.out.println("Usage: ShowMethods qualified.class.name");
@@ -18,14 +20,10 @@ public class ShowMethods {
             Method[] methods = c.getMethods();
             Constructor[] ctors = c.getConstructors();
             if (args.length == 1) {
-                for (Method method : methods) {
-                    //System.out.println(method);
+                for (Method method : methods)
                     System.out.println(p.matcher(method.toString()).replaceAll(""));
-                }
-                for (Constructor ctor : ctors) {
-                    //System.out.println(ctor);
+                for (Constructor ctor : ctors)
                     System.out.println(p.matcher(ctor.toString()).replaceAll(""));
-                }
                 lines = methods.length + ctors.length;
             } else {
                 for (Method method: methods) {
